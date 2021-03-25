@@ -9,39 +9,52 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.openqa.selenium.By;
 
+import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
-public class ValidadorCpfSteps{
-	
+public class ValidadorCpfSteps {
+
 	public ValidadorCpfSteps() {
-	    System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
-	    browser = new ChromeDriver();
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		browser = new ChromeDriver();
 	}
-	
+
 	public WebDriver browser;
 
-	@Quando("que que estou no site do tornese um programador")
-	public void que_que_estou_no_site_do_tornese_um_programador() {
-		browser.get("https://www.torneseumprogramador.com.br/aulas/front-end");
+	@Dado("que eu estou no site da gama academy {string}")
+	public void que_eu_estou_no_site_da_gama_academy(String siteacademy) {
+		browser.get(siteacademy);
 	}
 
-	@Quando("digito no campo de busca a palavra {string}")
-	public void digito_no_campo_de_busca_a_palavra(String string) {
-		WebElement input = browser.findElement(By.id("aula"));
-		input.sendKeys(string);
+	@Quando("clico na opcao {string}")
+	public void clico_na_opcao(String quemsomosString) {
+		WebElement quemsomos = browser.findElement(By.cssSelector(".nav-link"));
+		quemsomos.click();
 	}
 
-	@Quando("clico na lupa de busca")
-	public void clico_na_lupa_de_busca() {
-		WebElement input = browser.findElement(By.id("icon-pesquisa"));
-		input.click();
+	@Entao("deve ver o item do {string}")
+	public void deve_ver_o_item_do(String string) {
+		WebElement input = browser.findElement(By.cssSelector(".manifesto h1.heading.lado"));
+		assertEquals(string, input.getText());
+		browser.quit();
 	}
 
-	@Entao("devo ver o resultado {string} na busca")
-	public void devo_ver_o_resultado_na_busca(String string) {
-		WebElement input = browser.findElement(By.id("busca"));
-		assertNotNull(input);
+	@Dado("que eu estou no site da gama academy {}")
+	public void que_eu_estou_no_site_da_gama_academy(String sitecurso) {
+		browser.get(sitecurso);
+	}
+
+	@Quando("clico na opcao quero ir para o proximo nivel")
+	public void clico_na_opcao_quero_ir_para_o_proximo_nivel() {
+		WebElement botao = browser.findElement(By.xpath("//*[@id='lp-pom-button-849']"));
+		botao.click();
+	}
+
+	@Entao("devo ver o valor e o botao comprar agora")
+	public void devo_ver_o_valor_e_o_botao_comprar_agora() {
+		WebElement input = browser.findElement(By.xpath("//*[@id="app"]/div/div[1]/div[2]/div/div[4]/div[3]/div/span"));
+		assertEquals(string, input.getText());
 		browser.quit();
 	}
 

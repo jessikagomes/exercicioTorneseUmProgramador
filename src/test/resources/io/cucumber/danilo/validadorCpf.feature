@@ -1,15 +1,15 @@
 # language: pt
-Funcionalidade: Encontrar cursos na Pagina
-  Procuraremos cursos dentro da pagina tornese um programador
+Funcionalidade: Fazer busca na pagina da Gama Academy
+  
+  Projeto de sala de aula para encontrar elementos na pagina
 
-  Cenario: Entrar no site do tornese um programador e buscar pelo conteudo tdd
-    Quando que que estou no site do tornese um programador
-    E digito no campo de busca a palavra "tdd"
-    E clico na lupa de busca
-    Entao devo ver o resultado "tdd" na busca
+Cenario: Fazer busca de Manifesto na Pagina
+  Dado que eu estou no site da gama academy "https://www.gama.academy/"
+  E clico na opcao "Quem somos"
+  Entao deve ver o item do "MANIFESTO"
 
-  Cenario: Entrar no site do tornese um programador e buscar pelo conteudo bdd
-    Quando que que estou no site do tornese um programador
-    E digito no campo de busca a palavra "bdd"
-    E clico na lupa de busca
-    Entao devo ver o resultado "bdd" na busca
+Cenario: Fazer matricula no curso Product Management
+  Dado que eu estou no site da gama academy "https://pages.gama.academy/curso-de-product-management/"
+  E clico na opcao quero ir para o proximo nivel
+  Entao devo ver o valor e o botao comprar agora
+  
