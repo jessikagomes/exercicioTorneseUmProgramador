@@ -3,6 +3,7 @@ package io.cucumber.danilo;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.net.Urls;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -21,6 +22,7 @@ public class ValidadorCpfSteps {
 	}
 
 	public WebDriver browser;
+	//String siteacademy, sitecurso;
 
 	@Dado("que eu estou no site da gama academy {string}")
 	public void que_eu_estou_no_site_da_gama_academy(String siteacademy) {
@@ -46,16 +48,45 @@ public class ValidadorCpfSteps {
 	}
 
 	@Quando("clico na opcao quero ir para o proximo nivel")
-	public void clico_na_opcao_quero_ir_para_o_proximo_nivel() {
+	public void clico_na_opcao_quero_ir_para_o_proximo_nivel() { 
 		WebElement botao = browser.findElement(By.xpath("//*[@id='lp-pom-button-849']"));
 		botao.click();
 	}
 
 	@Entao("devo ver o valor e o botao comprar agora")
 	public void devo_ver_o_valor_e_o_botao_comprar_agora() {
-		WebElement input = browser.findElement(By.xpath("//*[@id="app"]/div/div[1]/div[2]/div/div[4]/div[3]/div/span"));
-		assertEquals(string, input.getText());
+		String valorEsperado, botaoComprarEsperado;
+		valorEsperado = "R$ 1.529,00";
+		botaoComprarEsperado = "Próximo passo";
+		WebElement botaoProximoPasso = browser.findElement(By.id("button#saveUserData"));
+		WebElement valorHotmart = browser.findElement(By.cssSelector("span[class='product-part product-price--single']"));
+		assertEquals(valorEsperado, valorHotmart.getText());
+		assertEquals(botaoComprarEsperado, botaoProximoPasso.getText());
 		browser.quit();
+		/*
+		 * String botaoQueroMeMatricular = "QUERO ME MATRICULAR"; WebElement
+		 * identificandoSiteGama =
+		 * browser.findElement(By.xpath("//*[@id='lp-pom-button-849']")); WebElement
+		 * identificandoSiteHotmart =
+		 * browser.findElement(By.xpath("//*[@id='__layout']"));
+		 * browser.get("https://pages.gama.academy/curso-de-product-management/");
+		 * 
+		 * 
+		 * if () { WebElement valorHotmart =
+		 * browser.findElement(By.cssSelector(".product-price")); WebElement
+		 * botaoProximoPasso = browser.findElement(By.cssSelector("saveUserData"));
+		 * assertEquals(valorEsperado, valorHotmart.getText());
+		 * assertEquals(botaoComprarEsperado, botaoProximoPasso.getText());
+		 * browser.quit();
+		 * 
+		 * } else if (browser) { WebElement valor = browser.findElement(By.
+		 * cssSelector("div:nth-of-type(90) > div:nth-of-type(2) > p > span > span > span > span"
+		 * )); WebElement matricular =
+		 * browser.findElement(By.cssSelector("a[id='lp-pom-button-883']"));
+		 * assertEquals(valorEsperado, valor.getText());
+		 * assertEquals(botaoQueroMeMatricular, matricular.getText()); browser.quit(); }
+		 */
+
 	}
 
 }
